@@ -4,7 +4,8 @@
 @endsection
 
 @section('content')
-    <h1 class="text-info">Registered Users Are:</h1>
+    <h1 class="text-info text-center" >Registered Users</h1>
+    <hr style="border-bottom: 2px solid #3d3d3d;width:50%;">
     <div class="table-responsive">
         <table class="table">
             <thead class="">

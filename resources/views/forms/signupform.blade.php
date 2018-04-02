@@ -1,3 +1,5 @@
+<h1 class="text-info text-center" >SignUp Form</h1>
+<hr style="border-bottom: 2px solid #3d3d3d;width:50%;">
 {!! Form::open(['url' => '/signup/submit']) !!}
     <div class="form-row">
         <div class="form-group col-md-6">
