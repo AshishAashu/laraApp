@@ -7,7 +7,7 @@
     <h1 class="text-info text-center" >Registered Users</h1>
     <hr style="border-bottom: 2px solid #3d3d3d;width:50%;">
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="background: white; font-size: 1.5em;">
             <thead class="">
                 <tr>
                     <th>Id</th>

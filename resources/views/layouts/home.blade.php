@@ -12,7 +12,7 @@
 <body>
     @include('inc.navbar')
     <div class="container">
-        <div class="col-md-8 well">
+        <div class="col-md-12">
             @include('./inc/messages')
             @yield('content')
         </div>
