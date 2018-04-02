@@ -7,6 +7,7 @@
       <li class="{{Request::is('/') ? 'active' : ''}}"><a href="/">Home</a></li>
       
       <li class="{{Request::is('signup') ? 'active' : ''}}"><a href="/signup">SignUp</a></li>
+      <li class="{{Request::is('users') ? 'active' : ''}}"><a href="/users">Show Users</a></li>
       <li class="{{Request::is('about') ? 'active' : ''}}"><a href="/about">About</a></li>
     </ul>
   </div>

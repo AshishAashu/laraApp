@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use View;
 use Illuminate\Http\Request;
-
+use App\users;
 class PageController extends Controller
 {
     //
@@ -19,5 +19,8 @@ class PageController extends Controller
         return view('about');
     }
 
-    
+    public function getUsers(){
+        $users = users::all();
+        return view::make('users')->with('users',$users);
+    }
 }
