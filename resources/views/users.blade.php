@@ -10,6 +10,7 @@
         <table class="table " style="background: white; font-size: 1.7em;">
             <thead >
                 <tr class="info">
+                    <th class="text-center">Sr.No</th>
                     <th class="text-center">Id</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
@@ -18,8 +19,12 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $count = 1;
+                @endphp
                 @foreach($users as $usr)
                     <tr>
+                        <td class="text-center">{{$count++}}</td>
                         <td class="text-center">{{$usr->id}}</td>
                         <td class="text-center">{{$usr->firstname." ".$usr->lastname}}</td>
                         <td class="text-center">{{$usr->useremail}}</td>
