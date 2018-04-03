@@ -20,3 +20,9 @@ Route::get('/signup', 'PageController@getSignup');
 Route::get('/users', 'PageController@getUsers');
 
 Route::post('/signup/submit', 'userController@signupSubmit');
+
+Route::post('/user/edit/submit', 'userController@editUserDetails');
+
+Route::get('/user/del', 'userController@deleteUser');
+
+Route::get('/user/getUser', 'userController@getUser');
