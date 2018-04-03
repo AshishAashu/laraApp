@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\users;
-class signupController extends Controller
+class userController extends Controller
 {
     public function signupSubmit(Request $req){
         $this->validate($req,[
@@ -25,4 +26,11 @@ class signupController extends Controller
         return redirect('/')->with('success','user signup successful..');
     }
 
+    public function checkExistUser(){
+        die($users); 
+    }
+
+    public function deleteUser($id){
+
+    }
 }

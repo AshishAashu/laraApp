@@ -14,6 +14,7 @@
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Mobile</th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,14 @@
                         <td class="text-center">{{$usr->firstname." ".$usr->lastname}}</td>
                         <td class="text-center">{{$usr->useremail}}</td>
                         <td class="text-center">{{$usr->usermob}}</td>
+                        <td class="text-center">
+                            <button id="edit_{{$usr->id}}"  class="btn  btn-info" title="Edit info for user">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                            <button id="del_{{$usr->id}}" class="btn  btn-danger" title="Delete User">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </td>    
                     </tr>    
                 @endforeach
             </tbody>

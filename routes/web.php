@@ -19,4 +19,4 @@ Route::get('/signup', 'PageController@getSignup');
 
 Route::get('/users', 'PageController@getUsers');
 
-Route::post('/signup/submit', 'signupController@signupSubmit');
+Route::post('/signup/submit', 'userController@signupSubmit');
