@@ -16,14 +16,18 @@ class userController extends Controller
             'userpass'=>'required',
             'userconpass'=>'required'
         ]);
-        $msg = new users;
-        $msg->firstname = $req->input('firstname');
-        $msg->lastname = $req->input('lastname');
-        $msg->useremail = $req->input('useremail');
-        $msg->usermob = $req->input('usermob');
-        $msg->userpass = $req->input('userpass');
-        $msg->save();
-        return redirect('/')->with('success','user signup successful..');
+        if($req->input('userpass')!=$req->input('userconpass')){
+            return redirect()->back()->with("warning","Password not matches...");
+        }else{
+            $msg = new users;
+            $msg->firstname = strtoupper($req->input('firstname'));
+            $msg->lastname = $req->input('lastname');
+            $msg->useremail = $req->input('useremail');
+            $msg->usermob = $req->input('usermob');
+            $msg->userpass = $req->input('userpass');
+            $msg->save();
+            return redirect('/')->with('success','user signup successful..');
+        }
     }
 
     public function checkExistUser(){
