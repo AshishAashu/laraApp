@@ -1,4 +1,4 @@
-@extends("./layouts/home")
+@extends('layouts.home')
 
 @section("title")
     User Login
@@ -6,6 +6,6 @@
 
 
 @section("content")
-    @include("./forms/loginform)
+    @include('forms.updationform')
 @endsection
 
