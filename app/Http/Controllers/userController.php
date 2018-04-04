@@ -25,6 +25,7 @@ class userController extends Controller
             $msg->useremail = $req->input('useremail');
             $msg->usermob = $req->input('usermob');
             $msg->userpass = $req->input('userpass');
+            $msg->created_at = "2018-04-02 11:15:30";
             $msg->save();
             return redirect('/')->with('success','user signup successful..');
         }
@@ -46,6 +47,7 @@ class userController extends Controller
         $user->firstname = $req->input('firstname');
         $user->lastname = $req->input('lastname');
         $user->usermob = $req->input('usermob');
+
         $user->save();
         return redirect("/users")->with("success","Updated successfully...");
     }
