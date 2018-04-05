@@ -25,11 +25,11 @@ class userapiController extends Controller
                                         ]);
         $body =  $response->getBody();
         $body = json_decode($body);
-        $data = $body->data;
         // echo $body->status;
         if($body->status == '1'){
             Session::put('user_token',$body->auth_token);
             //$value = session('key');
+            $data = $body->data;
             Session::put('data',$data);
             return redirect('/userapi/aboutuser');
         }
@@ -65,15 +65,22 @@ class userapiController extends Controller
     public function getUpdate(Request $req){
         $client = new Client(['base_uri' => 'http://192.168.1.221/login-service/public/Api/v1/']);
         $data = Session::get('data');
-        $response = $client->put('/User/Update',['api-token'=>Session::get('user_token'),
+        $response = $client->request('PUT','User/Update',
+                                    ['form_params'=>[
                                                 'id'=>$data->id,
                                                 'name'=>$req->input('name'),
                                                 'email'=>$req->input("useremail"),
-                                                'password'=>$req->input('userpass')    
-                                                ]);
+                                                'password'=>$req->input('userpass')
+                                                ],
+                                     'headers' => ['api-token'=>Session::get('user_token')],
+                                    ]
+                                );                        
         $body =  $response->getBody();
         $body = json_decode($body);
         if($body->status == '1'){
+            $data->name = $req->input('name');
+            $data->email = $req->input('useremail');
+            Session::put('data',$data);
             return redirect('/')->with('success',$body->message);
         }else{
             return redirect('/')->with('warning',$body->message);
@@ -83,10 +90,16 @@ class userapiController extends Controller
     public function getDeleteUser(){
         $client = new Client(['base_uri' => 'http://192.168.1.221/login-service/public/Api/v1/']);
         $data = Session::get('data');
-        $response = $client->delete("/User/Delete/{{$data}}");
+        $response = $client->request("DELETE","User/Delete/$data->id",
+                                            [
+                                             'headers'=>[
+                                                 'api-token'=>Session::get('user_token')
+                                             ]       
+                                            ]);
         Session::flush();
         return redirect("/")->with('warning','user deleted');
     }
+    
     public function getLogout(){
         Session::flush();
         return redirect("/");

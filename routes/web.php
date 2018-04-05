@@ -39,6 +39,8 @@ Route::get('/userapi/update', 'userapiController@getUpdationForm');
 
 Route::post('/userapi/update/submit', 'userapiController@getUpdate');
 
+Route::get('/userapi/delete', 'userapiController@getDeleteUser');
+
 Route::get('/userapi/aboutuser', 'userapiController@getAboutUser');
 
 Route::get('/userapi/logout', 'userapiController@getLogout');

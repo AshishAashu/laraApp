@@ -12,6 +12,7 @@
         @else
           <li class="{{Request::is('/userapi/aboutuser') ? 'active' : ''}}"><a href="/userapi/aboutuser">MyDetails</a></li>
           <li class="{{Request::is('/userapi/update') ? 'active' : ''}}"><a href="/userapi/update">Update</a></li>
+          <li class="{{Request::is('/userapi/delete') ? 'active' : ''}}"><a href="/userapi/delete">Delete Profile</a></li>
           <li class=""><a href ="/userapi/logout">Logout</a></li>
       @endif 
       
