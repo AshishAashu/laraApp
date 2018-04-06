@@ -26,7 +26,7 @@
            </tr>
            <tr>
                <td>Created At:</td>
-               <td>{{$data->created_at}}</td>
+               <td>now</td>
            </tr>
        </table>
    </div>

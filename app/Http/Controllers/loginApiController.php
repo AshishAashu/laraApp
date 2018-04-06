@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use View;
 use Session;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\users;
 use stdClass;
-class userapiController extends Controller
+class loginApiController extends Controller
 {
+
+
+
     //
     public function getLoginForm(){
         return view('/userapi/login');
@@ -25,8 +29,9 @@ class userapiController extends Controller
                                              'password'=> $req->input("userpass")]
                                         ]);
         $body =  $response->getBody();
+        //var_dump($body);
         $body = json_decode($body);
-        // echo $body->status;
+        var_dump($body);
         if($body->status == '1'){
             Session::put('user_token',$body->auth_token);
             //$value = session('key');
@@ -73,7 +78,7 @@ class userapiController extends Controller
                                                 'email'=>$req->input("useremail"),
                                                 'password'=>$req->input('userpass')
                                                 ],
-                                     'headers' => ['api-token'=>Session::get('user_token')],
+                                     'headers' => ['auth_token'=>Session::get('user_token')],
                                     ]
                                 );                        
         $body =  $response->getBody();
@@ -91,14 +96,23 @@ class userapiController extends Controller
     public function getDeleteUser(){
         $client = new Client(['base_uri' => 'http://localhost:8000/']);
         $data = Session::get('data');
-        $response = $client->request("DELETE","User/delete/$data->id",
+        $token = Session::get('user_token');
+        $response = $client->request("DELETE","User/delete",
                                             [
                                              'headers'=>[
-                                                 'api-token'=>Session::get('user_token')
+                                                 'auth_token'=>$token,
+                                                 'id'=>$data->id
                                              ]       
                                             ]);
-        Session::flush();
-        return redirect("/")->with('warning','user deleted');
+        $body = $response->getBody();
+        $body = json_decode($body);
+        if($body->status == 1){
+            Session::flush();
+            return redirect("/")->with('warning','user deleted');
+        }else{
+            Session::flush();
+            return redirect("/")->with('warning','Invalid Request.');
+        }
     }
     
     public function getLogout(){
@@ -106,3 +120,4 @@ class userapiController extends Controller
         return redirect("/");
     }
 }
+

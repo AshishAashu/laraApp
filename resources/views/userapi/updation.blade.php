@@ -6,6 +6,7 @@
 
 
 @section("content")
+   {{Session::get('user_token')}}
     @include('forms.updationform')
 @endsection
 
